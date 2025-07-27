@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PhysicsUI Event Debugger Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    .box {
+      width: 150px;
+      height: 150px;
+      background: #2196f3;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      user-select: none;
+      touch-action: none;
+    }
+    input, button {
+      display: block;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>PhysicsUI Event Debugger</h1>
+
+  <div class="box" id="box">Click Me</div>
+  <input type="text" placeholder="Type something..." />
+  <button id="stop">Stop Logging</button>
+
+  <p>Open the <strong>Developer Console</strong> to see all event logs.</p>
+
+  <script type="module">
+    import { EventDebugger } from './lib/js/eventDebugger.js';
+
+    // Start listening to all events on the page
+    EventDebugger.listenToAll(document.body);
+
+    // Stop logging on button click
+    document.getElementById('stop').addEventListener('click', () => {
+      EventDebugger.stopListening();
+    });
+  </script>
+</body>
+</html>
